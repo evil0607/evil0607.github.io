@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+ <head>
+ <meta charset="UTF-8">
+ <title>
+ 题目五
+ </title>
+ <style type="text/css">
+ body{
+ margin:0px;
+ cursor:pointer;
+ }
+ div{
+ background-color:rgba(100,100,100,0.1);
+ box-sizing:border-box;
+ border-radius:50%;
+ border:1px solid blue;
+ position:absolute;
+ transition:all 1s;
+ margin:0px;
+ padding:0px;
+ }
+ div.bd{
+ background-color:rgba(0,100,100,0.05);
+ border:0px solid ;
+ border-radius: 0% ;
+ }
+ div p{
+ margin: auto;
+ padding: 10%;
+ color:black;
+ text-align:center;
+ }
+ </style>
+ </head>
+ <body>
+ <script type="text/javascript">
+  <!--
+  const NUMS=6;
+  var tsBalls=[];
+  var sn=0;
+  const S=['人闲桂花落，夜静春山空。月出惊山鸟，时鸣春涧中。','苍苍竹林寺，杳杳钟声晚。荷笠带斜阳，青山独归远。','移舟泊烟渚，日暮客愁新。野旷天低树，江清月近人。','怀君属秋夜，散步咏凉天。空山松子落，幽人应未眠。','香灯伴残梦，楚国在天涯。月落子规歇，满庭山杏花。'];
+  document.body.onmousemove=document.body.ontouchmove=function(){
+	  this.style.background='white';
+	  for(let ball of tsBalls){
+		  ball.setPositionDiv();
+	  }
+  };
+  document.body.onclick =  function(){
+	  for(let ball of tsBalls){
+		  ball.randPositionDiv();
+		  this.style.background='black';
+	  }
+  };
+  document.body.ondblclick = function(){
+	  for(let ball of tsBalls){
+	  this.removeChild(ball.dom);
+	  }
+	  tsBalls=[];
+	  sn===S.length-1?sn=0:sn++;
+	  for(var i=0;i<S[sn].length;i++){
+	  var x0=i%NUMS;
+	  var y0=Math.floor(i/NUMS);
+	  var ballObj=new Ball(x0,y0);
+	  ballObj.createDivDom(S[sn][i]);
+	  ballObj.randPositionDiv();
+	  tsBalls.push(ballObj);
+	  }
+  };
+ 	       
+
+  var bodyWidth = window.innerWidth ;
+  var bodyHeight = window.innerHeight ;
+  document.body.style.width=bodyWidth+'px';
+  document.body.style.height=bodyHeight+'px';
+  var r=bodyWidth>bodyHeight?bodyHeight/(NUMS*3/2):bodyWidth/(NUMS*3/2); 
+
+  for(var i=0 ;i < S[sn].length ; i++){
+	  var x0=i%NUMS ;
+	  var y0=Math.floor(i/NUMS);
+	  var ballObj =new Ball(x0,y0);
+	  ballObj.createDivDom(S[sn][i]);
+	  ballObj.randPositionDiv();
+	  tsBalls.push(ballObj);
+  }
+ 	  
+  function Ball(x0,y0){
+	  this.x0=x0;
+	  this.y0=y0;
+	  this.dom=null;
+
+	  this.createDivDom=function(s){
+		  var divDom=document.createElement('div');
+		  var pDom=document.createElement('p');
+		  pDom.textContent=s;
+		  pDom.style.fontSize=r/2+'px';
+		  divDom.style.width = divDom.style.height=r+'px';
+		  if(this.x0===5||this.x0===11){
+			  divDom.className='bd';
+		  }
+		  divDom.appendChild(pDom) ; 
+		  document.body.appendChild(divDom) ;
+		  this.dom=divDom;		  
+	  };
+	  this.randPositionDiv = function(){
+		  var x=Math.floor(Math.random()*bodyWidth);
+		  if(x>= bodyWidth-r){
+			  x=bodyWidth-r;
+		  }
+		  var y=Math.floor( Math.random()*bodyHeight);
+		  if(y>=bodyHeight-r){
+			  y=bodyHeight-r;
+		  }
+		  this.dom.style.left=x+'px';
+		  this.dom.style.top=y+'px';
+	  };
+	  this.setPositionDiv = function(){
+		  var x=parseInt(this.x0)*r*1.2;
+		  var y=parseInt(this.y0)*r*1.2;
+		  this.dom.style.left=x+r+'px';
+		  this.dom.style.top=y+r+'px';
+	  }; 		  
+  }
+  //-->
+  </script>
+ </body>
+</html>
